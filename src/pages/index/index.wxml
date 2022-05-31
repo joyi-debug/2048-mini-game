@@ -1,0 +1,50 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 上方游戏基础信息 -->
+  <view class="game-info-panel">
+    <!-- 左侧2048 logo -->
+    <view class="logo-cell">2048</view>
+    <!-- 当前分数展示 -->
+    <view class="score-info">
+      <text class="title">分数</text>
+      <text class="score">{{currentScore}}</text>
+    </view>
+    <!-- 历史分数展示 -->
+    <view class="score-info">
+      <text class="title">最高分</text>
+      <text class="score">{{heighestScore}}</text>
+    </view>
+  </view>
+  <!-- 游戏棋盘 -->
+  <view
+    class="game-board"
+    bindtouchstart="onTouchStart"
+    bindtouchmove="onTouchMove"
+    bindtouchend="onTouchEnd"
+  >
+    <!-- 以行为元素进行渲染 -->
+    <view
+      class="row"
+      wx:for="{{matrix}}"
+      wx:for-item="row"
+      wx:key="{{index}}"
+    >
+      <!-- 以单个方块为元素进行列表渲染 -->
+      <view
+        class="cell"
+        wx:for="{{row}}"
+        wx:for-item="cell"
+        wx:key="{{index}}"
+      >
+        <!-- 为每个方块绑定以cell为前缀的class -->
+        <view class="text cell-{{cell}}" wx:if="{{cell!==0 ? cell : '' }}">{{cell}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 下方操作按钮 -->
+  <view class="action-panel">
+    <view class="start-new-game" bindtap="onStartNewGame">New Game!</view>
+  </view>
+</view>
+
+
